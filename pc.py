@@ -2,14 +2,14 @@
 import sys, argparse
 
 def main(args):
-  print isPalindrome(args.words)
+  print isAnagram(args.words)
 
-def isPalindrome(words):
-  # Just one word: no palindrome
+def isAnagram(words):
+  # Just one word: no Anagram
   if len(words) is 1:
     return False;
 
-  # If one of the words has not the same length we certainly have no palindrome
+  # If one of the words has not the same length we certainly have no anagram
   length = len(words[0])
   for word in words[1:]:
     if len(word) != length:
@@ -32,21 +32,21 @@ def isPalindrome(words):
   first = dicts[first]
   
   # Compare each dicts with each other.
-  # Different amount of items means they can not be palindromes.
+  # Different amount of items means they can not be anagrams.
   length = len(first)
   for d in words:
     if len(dicts[d]) != length:
       return False 
 
   # Compare the amount of every letter in one word with all the other words.
-  # If one does not match we have no palindrome
+  # If one does not match we have no anagram
   for d in words:
     current = dicts[d]
     for c in first:
       if not current.has_key(c) or first[c] != current[c]:
         return False
 
-  # All inputs are palindromes of each other
+  # All inputs are anagram of each other
   return True
 
 parser = argparse.ArgumentParser(description='This description is shown when -h or --help are passed as arguments.')
@@ -54,7 +54,7 @@ parser = argparse.ArgumentParser(description='This description is shown when -h 
 parser.add_argument(dest = 'words',
                     metavar = 'STRING',
                     nargs = '+',
-                    help = 'Strings to be checked if they are palindormes.')
+                    help = 'Strings to be checked.')
 
 args = parser.parse_args()
 main(args)
