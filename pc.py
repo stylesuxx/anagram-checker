@@ -43,10 +43,7 @@ def isPalindrome(words):
   for d in words:
     current = dicts[d]
     for c in first:
-      try:
-        if first[c] != current[c]:
-          return False
-      except KeyError:
+      if not current.has_key(c) or first[c] != current[c]:
         return False
 
   # All inputs are palindromes of each other
