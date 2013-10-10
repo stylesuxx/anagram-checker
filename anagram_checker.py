@@ -2,7 +2,17 @@
 import sys, argparse
 
 def main(args):
-  print isAnagram(args.words)
+  base = args.base
+  words = args.words
+  words.append(base)
+
+  if len(words) > 1:
+    print isAnagram(words)
+  else:
+    print getAnagrams(base)
+    
+def getAnagrams(base):
+  return 'generating anagrams'
 
 def isAnagram(words):
   # Just one word: no Anagram
@@ -49,7 +59,7 @@ def isAnagram(words):
   # All inputs are anagram of each other
   return True
 
-parser = argparse.ArgumentParser(description='This description is shown when -h or --help are passed as arguments.')
+parser = argparse.ArgumentParser(description='Generates anagrams if one string is provided, otherwise checks if all strings are anagrams of each other. Identical strings are treated as anagrams as well.')
 
 parser.add_argument(dest = 'base',
                     metavar = 'BASE',
@@ -57,7 +67,7 @@ parser.add_argument(dest = 'base',
 
 parser.add_argument(dest = 'words',
                     metavar = 'STRING',
-                    nargs = '+',
+                    nargs = '*',
                     help = 'Strings to be checked.')
 
 args = parser.parse_args()
