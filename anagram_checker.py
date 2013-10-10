@@ -51,6 +51,10 @@ def isAnagram(words):
 
 parser = argparse.ArgumentParser(description='This description is shown when -h or --help are passed as arguments.')
 
+parser.add_argument(dest = 'base',
+                    metavar = 'BASE',
+                    help = 'The string to generate anagrams or check other strings against.')
+
 parser.add_argument(dest = 'words',
                     metavar = 'STRING',
                     nargs = '+',
