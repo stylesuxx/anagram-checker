@@ -1,19 +1,27 @@
 #!/usr/bin/python
 import sys, argparse
+from itertools import permutations
 
 def main(args):
-  base = args.base
+  base = args.base.lower()
   words = args.words
   words.append(base)
 
   if len(words) > 1:
     print isAnagram(words)
   else:
-    print getAnagrams(base)
+    printAnagrams(base)
     
-def getAnagrams(base):
-  return 'generating anagrams'
+# Print all possible anagrams of base
+# We print it instead of saving it to a list because we
+# would run out of memory when generating anagrams from
+# longer input
+def printAnagrams(base):
+  for p in permutations(base):
+    print ''.join(p)
 
+# Check if the given list of words are anagrams of each
+# other.
 def isAnagram(words):
   # Just one word: no Anagram
   if len(words) is 1:
