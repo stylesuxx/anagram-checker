@@ -1,6 +1,10 @@
 #!/usr/bin/python
-import sys, argparse
+import sys, signal, argparse
 from itertools import permutations
+
+def signal_handler(signal, frame):
+        print 'Exiting...'
+        sys.exit(0)
 
 def main(args):
   base = args.base.lower()
@@ -78,5 +82,6 @@ parser.add_argument(dest = 'words',
                     nargs = '*',
                     help = 'Strings to be checked.')
 
+signal.signal(signal.SIGINT, signal_handler)
 args = parser.parse_args()
 main(args)
