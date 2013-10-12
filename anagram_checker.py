@@ -12,21 +12,21 @@ def main(args):
   words.append(base)
 
   if len(words) > 1:
-    print isAnagram(words)
+    print is_anagram(words)
   else:
-    printAnagrams(base)
+    print_anagrams(base)
     
 # Print all possible anagrams of base
 # We print it instead of saving it to a list because we
 # would run out of memory when generating anagrams from
 # longer input
-def printAnagrams(base):
+def print_anagrams(base):
   for p in permutations(base):
     print ''.join(p)
 
 # Check if the given list of words are anagrams of each
 # other.
-def isAnagram(words):
+def is_anagram(words):
   # Just one word: no Anagram
   if len(words) is 1:
     return False;
